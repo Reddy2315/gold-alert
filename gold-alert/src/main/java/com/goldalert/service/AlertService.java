@@ -54,4 +54,8 @@ public class AlertService {
 
         return alerts;
     }
+
+    public List<Alert> getUserAlerts(String email) {
+        return alertRepository.findByUserEmailOrderByIdDesc(email);
+    }
 }

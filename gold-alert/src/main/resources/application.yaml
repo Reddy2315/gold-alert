@@ -2,6 +2,7 @@ server:
   port: 8080
   servlet:
     context-path: /api
+  allowed-origins: ${SERVER_ALLOWED_ORIGINS}
 
 spring:
   application:
@@ -35,6 +36,10 @@ gold:
   api:
     url: ${GOLD_API_BASE_URL}
     key: ${GOLD_API_KEY}
+
+  scheduler:
+    enabled: ${SCHEDULER_ENABLED:false}
+
 
 # Twilio configuration for WhatsApp notifications later
 twilio:
