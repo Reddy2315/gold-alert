@@ -16,12 +16,13 @@ public class GoldPriceScheduler {
     private final GoldPriceService goldPriceService;
     private final AlertService alertService;
 
-    @Scheduled(fixedRate = 900000)
+    // Every 8 hours: 0 0 */8 * * ? = At minute 0 of hour 0, 8, 16 of every day
+    @Scheduled(cron = "0 0 */8 * * ?")
     public void fetchGoldPriceJob() {
         log.info("Scheduled job started: Fetching gold price and checking alerts.");
         GoldPrice price = goldPriceService.fetchAndSavePrice();
 
-        // CORE ALERT LOGIC
+        // Check if any alerts are triggered by the new price
         alertService.findTriggeredAlerts(price.getPricePerGram());
     }
 }

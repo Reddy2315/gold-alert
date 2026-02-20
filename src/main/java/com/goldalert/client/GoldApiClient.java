@@ -23,18 +23,28 @@ public class GoldApiClient {
     public Double fetchGoldPrice() {
 
         try {
-            String url = apiUrl + "?api_key=" + apiKey + "&base=XAU&currencies=INR";
+            String url = apiUrl
+                    + "?api_key=" + apiKey
+                    + "&currency=INR"
+                    + "&unit=g";
 
             Map<String, Object> response =
                     restTemplate.getForObject(url, Map.class);
 
-            Map<String, Object> rates =
-                    (Map<String, Object>) response.get("rates");
+            if (response == null || !response.containsKey("metals")) {
+                return null;
+            }
 
-            return Double.parseDouble(rates.get("INR").toString());
+            Map<String, Object> metals = (Map<String, Object>) response.get("metals");
+
+            if (metals == null || !metals.containsKey("mcx_gold")) {
+                return null;
+            }
+
+            return Double.parseDouble(metals.get("mcx_gold").toString());
 
         } catch (Exception ex) {
-            // VERY IMPORTANT: do NOT crash system
+            // IMPORTANT: Never crash scheduler
             return null;
         }
     }

@@ -8,34 +8,35 @@ spring:
     name: gold-alert
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/gold_alert
-    username: postgres
-    password: pass@word1
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
 
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL}
+    username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
     properties:
       mail.smtp.auth: true
       mail.smtp.starttls.enable: true
 
 jwt:
-  secret: "THIS_IS_A_256_BIT_SECRET_KEY_FOR_GOLD_ALERT_APP"
+  secret: ${JWT_SECRET}
   expiration: 3600000
 
 
 gold:
   api:
-    url: https://api.metals.dev/v1/latest
-    key: YOUR_REAL_API_KEY
+    url: ${GOLD_API_BASE_URL}
+    key: ${GOLD_API_KEY}
 
+# Twilio configuration for WhatsApp notifications later
 twilio:
   accountSid: YOUR_TWILIO_SID
   authToken: YOUR_TWILIO_AUTH_TOKEN

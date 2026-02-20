@@ -18,23 +18,28 @@ public class GoldPriceService {
     public GoldPrice fetchAndSavePrice() {
 
         Double price = goldApiClient.fetchGoldPrice();
+        String source = "METALS_API";
 
-        // FALLBACK (until real API key is added)
+        // Fallback to last DB value (REAL DATA)
         if (price == null) {
-            price = getFallbackPrice();
+            GoldPrice lastPrice = goldPriceRepository
+                    .findTopByOrderByFetchedAtDesc()
+                    .orElseThrow(() ->
+                            new IllegalStateException(
+                                    "Gold API failed and no DB fallback available"
+                            )
+                    );
+
+            price = lastPrice.getPricePerGram();
+            source = "DB_FALLBACK";
         }
 
         GoldPrice goldPrice = GoldPrice.builder()
                 .pricePerGram(price)
-                .source(price == null ? "FALLBACK" : "METALS_API")
+                .source(source)
                 .fetchedAt(LocalDateTime.now())
                 .build();
 
         return goldPriceRepository.save(goldPrice);
-    }
-
-    private double getFallbackPrice() {
-        // Simulated realistic gold price (INR/gram)
-        return 5800 + Math.random() * 200;
     }
 }
