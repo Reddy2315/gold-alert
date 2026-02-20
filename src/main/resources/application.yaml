@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: gold-alert
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gold_alert
+    username: postgres
+    password: pass@word1
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+jwt:
+  secret: "THIS_IS_A_256_BIT_SECRET_KEY_FOR_GOLD_ALERT_APP"
+  expiration: 3600000
