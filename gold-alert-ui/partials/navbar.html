@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="dashboard.html">
+      <span class="fw-bold brand-gradient fs-5">GoldAlert</span>
+      <small class="text-muted d-none d-md-inline">
+        Smart Buy Notifications
+      </small>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav links -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-4 mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link fw-medium" href="dashboard.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-medium" href="#">Alerts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-medium" href="#">Price History</a>
+        </li>
+      </ul>
+
+      <!-- Right actions -->
+      <div class="ms-auto d-flex align-items-center gap-3">
+        <span class="text-muted small d-none d-md-inline">
+          👤 <span id="loggedUser">User</span>
+        </span>
+        <button class="btn btn-outline-danger btn-sm px-3" onclick="logout()">
+          Logout
+        </button>
+      </div>
+    </div>
+
+  </div>
+</nav>
