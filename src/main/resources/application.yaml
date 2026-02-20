@@ -20,3 +20,9 @@ spring:
 jwt:
   secret: "THIS_IS_A_256_BIT_SECRET_KEY_FOR_GOLD_ALERT_APP"
   expiration: 3600000
+
+
+gold:
+  api:
+    url: https://api.metals.dev/v1/latest
+    key: YOUR_REAL_API_KEY
