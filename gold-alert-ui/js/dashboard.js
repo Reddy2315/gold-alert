@@ -39,6 +39,29 @@ async function triggerPrice() {
   showToast("Price fetched. If condition met, email will arrive.", "info");
 }
 
+// ---------- FETCH PRICE ----------
+// TODO:Need to check Not triggering schedualr, for dev only fetching gold price with button click
+async function fetchPrice() {
+  try {
+    await fetch(`${API_BASE_URL}/price/fetch`, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    });
+
+    showToast(
+      "Price fetched. If condition met, email will arrive.",
+      "info"
+    );
+
+  } catch (err) {
+    showToast("Failed to fetch price. Try again.", "error");
+  }
+
+  // Reload alert list immediately
+  await loadAlerts();
+}
+
 // Load alerts and price history on page load
 async function loadPriceHistory() {
   const token = localStorage.getItem("token");
