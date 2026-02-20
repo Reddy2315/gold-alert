@@ -17,6 +17,15 @@ spring:
       ddl-auto: update
     show-sql: true
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
 jwt:
   secret: "THIS_IS_A_256_BIT_SECRET_KEY_FOR_GOLD_ALERT_APP"
   expiration: 3600000
@@ -26,3 +35,8 @@ gold:
   api:
     url: https://api.metals.dev/v1/latest
     key: YOUR_REAL_API_KEY
+
+twilio:
+  accountSid: YOUR_TWILIO_SID
+  authToken: YOUR_TWILIO_AUTH_TOKEN
+  whatsappFrom: "whatsapp:+14155238886" # Twilio sandbox number

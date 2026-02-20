@@ -18,6 +18,11 @@ public class AlertService {
     private final AlertRepository alertRepository;
     private final UserRepository userRepository;
 
+    private final NotificationService emailService;
+
+//    FUTURE: Add WhatsApp notifications (e.g. using Twilio API)
+//    private final NotificationService whatsappService;
+
     public Alert createAlert(String email, double targetPrice) {
 
         User user = userRepository.findByEmail(email)
@@ -41,6 +46,10 @@ public class AlertService {
         alerts.forEach(alert -> {
             alert.setTriggered(true);
             alert.setTriggeredAt(LocalDateTime.now());
+
+            // SEND NOTIFICATIONS
+            emailService.notify(alert, currentPrice);
+//            whatsappService.notify(alert, currentPrice);
         });
 
         return alerts;
