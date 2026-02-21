@@ -113,3 +113,15 @@ function updateNavbar() {
     userActions.classList.add("d-none");
   }
 }
+
+// ---------- LOGIN FORM SUBMISSION HANDLER ----------
+function handleLogin(event) {
+  event.preventDefault(); // stop page reload
+  login();                // call your existing login()
+}
+
+// ---------- REGISTER FORM SUBMISSION HANDLER ----------
+function handleRegister(event) {
+  event.preventDefault(); // stop page reload
+  register();             // call your existing register()
+}
