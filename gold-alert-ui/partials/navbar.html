@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
   <div class="container">
-
     <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center gap-2" href="dashboard.html">
+    <a
+      class="navbar-brand d-flex align-items-center gap-2"
+      href="dashboard.html"
+    >
       <span class="fw-bold brand-gradient fs-5">GoldAlert</span>
       <small class="text-muted d-none d-md-inline">
         Smart Buy Notifications
@@ -10,8 +12,12 @@
     </a>
 
     <!-- Mobile toggle -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -30,15 +36,41 @@
       </ul>
 
       <!-- Right actions -->
-      <div class="ms-auto d-flex align-items-center gap-3">
-        <span class="text-muted small d-none d-md-inline">
-          👤 <span id="loggedUser">User</span>
-        </span>
-        <button class="btn btn-outline-danger btn-sm px-3" onclick="logout()">
-          Logout
+      <div class="ms-auto d-flex align-items-center gap-3" id="authArea">
+        <!-- When NOT logged in -->
+        <div id="guestActions" class="d-flex gap-2">
+          <a href="login.html" class="btn btn-outline-primary btn-sm px-3">
+            Login
+          </a>
+          <a href="register.html" class="btn btn-primary btn-sm px-3">
+            Register
+          </a>
+        </div>
+
+        <!-- When logged in -->
+        <div id="userActions" class="d-none dropdown">
+        <button
+            class="btn btn-light dropdown-toggle d-flex align-items-center gap-2"
+            type="button"
+            id="userDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        >
+            👤 <span id="loggedUser">User</span>
         </button>
+
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+            <li>
+            <button class="dropdown-item text-danger" onclick="logout()">
+                Logout
+            </button>
+            </li>
+        </ul>
+        </div>
       </div>
     </div>
 
+    <script src="js/auth.js"></script>
+    <script>updateNavbar();</script>
   </div>
 </nav>
