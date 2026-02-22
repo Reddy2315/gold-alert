@@ -58,8 +58,9 @@ async function fetchPrice() {
     showToast("Failed to fetch price. Try again.", "error");
   }
 
-  // Reload alert list immediately
+  // Reload alert list and load price history immediately
   await loadAlerts();
+  await loadPriceHistory();
 }
 
 // Load alerts and price history on page load

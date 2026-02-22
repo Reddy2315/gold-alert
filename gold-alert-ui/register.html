@@ -44,8 +44,19 @@
           Passwords do not match
         </div>
 
-        <button id="registerBtn" type="submit" class="btn btn-gold w-100 mb-2 d-flex align-items-center justify-content-center gap-2">
-          Register
+        <button
+          id="registerBtn"
+          type="submit"
+          class="btn btn-gold w-100 mb-2 d-flex align-items-center justify-content-center gap-2"
+        >
+          <span id="registerBtnText">Register</span>
+
+          <span
+            id="registerSpinner"
+            class="spinner-border spinner-border-sm d-none"
+            role="status"
+            aria-hidden="true"
+          ></span>
         </button>
         <button type="reset" class="btn btn-outline-secondary w-100 mb-2">
           Reset

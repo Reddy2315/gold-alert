@@ -75,9 +75,11 @@ function toggleRegisterLoading(isLoading) {
   const text = document.getElementById("registerBtnText");
   const spinner = document.getElementById("registerSpinner");
 
+  if (!btn) return;
+
   btn.disabled = isLoading;
-  text.classList.toggle("d-none", isLoading);
-  spinner.classList.toggle("d-none", !isLoading);
+  if (text) text.classList.toggle("d-none", isLoading);
+  if (spinner) spinner.classList.toggle("d-none", !isLoading);
 }
 
 // ---------- AUTH HANDLERS ----------
