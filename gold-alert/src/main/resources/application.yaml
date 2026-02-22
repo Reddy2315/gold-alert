@@ -19,6 +19,7 @@ spring:
     show-sql: false
 
   mail:
+    from: ${MAIL_FROM}
     host: ${MAIL_HOST}
     port: ${MAIL_PORT}
     username: ${MAIL_USERNAME}
