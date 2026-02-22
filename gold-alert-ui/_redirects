@@ -1,4 +1,10 @@
-/          /index.html     200
-/login     /login.html     200
-/register  /register.html  200
-/dashboard /dashboard.html 200
+# Clean routes
+/            /index.html        200
+/login       /login.html        200
+/register    /register.html     200
+/dashboard   /dashboard.html    200
+
+# Force clean URLs (IMPORTANT)
+/login.html       /login        301!
+/register.html    /register     301!
+/dashboard.html   /dashboard    301!
