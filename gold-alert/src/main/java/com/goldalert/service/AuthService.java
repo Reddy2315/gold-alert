@@ -2,6 +2,7 @@ package com.goldalert.service;
 
 import com.goldalert.dto.LoginRequest;
 import com.goldalert.dto.RegisterRequest;
+import com.goldalert.exception.AuthException;
 import com.goldalert.model.User;
 import com.goldalert.repository.UserRepository;
 import com.goldalert.security.JwtUtil;
@@ -36,10 +37,12 @@ public class AuthService {
     public String login(LoginRequest request) {
 
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+                .orElseThrow(() ->
+                        new AuthException("Invalid email or password", "AUTH_INVALID")
+                );
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid credentials");
+            throw new AuthException("Invalid email or password", "AUTH_INVALID");
         }
 
         return jwtUtil.generateToken(user.getEmail());

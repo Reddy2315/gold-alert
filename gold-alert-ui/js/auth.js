@@ -114,7 +114,16 @@ async function login() {
     });
 
     if (!res.ok) {
-      showToast("Invalid email or password", "error");
+      const err = await res.json();
+
+      if (err.code === "AUTH_INVALID") {
+        showToast(
+          "Login failed. If you don’t have an account, please register.",
+          "error"
+        );
+      } else {
+        showToast("Something went wrong. Try again.", "error");
+      }
       return;
     }
 
