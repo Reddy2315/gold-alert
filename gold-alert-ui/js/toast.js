@@ -1,4 +1,4 @@
-function showToast(message, type = "success") {
+function showToast(message, type = "success", options = {}) {
   const toastEl = document.getElementById("appToast");
   const toastBody = document.getElementById("toastMessage");
 
@@ -13,8 +13,31 @@ function showToast(message, type = "success") {
     toastEl.classList.add("text-bg-primary");
   }
 
-  toastBody.innerText = message;
+  // 🔹 FORCE SINGLE LINE LAYOUT
+  toastBody.className = "toast-body d-flex align-items-center";
 
-  const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+  // clear old content
+  toastBody.innerHTML = "";
+
+  // message text
+  const msgSpan = document.createElement("span");
+  msgSpan.className = "me-2";
+  msgSpan.innerText = message;
+  toastBody.appendChild(msgSpan);
+
+  // optional action button
+  if (options.actionText && options.actionUrl) {
+    const btn = document.createElement("button");
+    btn.className = "btn btn-sm btn-light";
+    btn.innerText = options.actionText;
+
+    btn.onclick = () => {
+      window.location.href = options.actionUrl;
+    };
+
+    toastBody.appendChild(btn);
+  }
+
+  const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
   toast.show();
 }

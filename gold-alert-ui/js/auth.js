@@ -118,8 +118,9 @@ async function login() {
 
       if (err.code === "AUTH_INVALID") {
         showToast(
-          "Login failed. If you don’t have an account, please register.",
-          "error"
+          "Login failed. New user? Register now.",
+          "error",
+          { actionText: "Register", actionUrl: "/register" }
         );
       } else {
         showToast("Something went wrong. Try again.", "error");
