@@ -1,2 +1,1 @@
-const API_BASE_URL = "http://localhost:8080/api";
-// later change to Render URL
+const API_BASE_URL = "https://gold-alert-api.onrender.com/api";
